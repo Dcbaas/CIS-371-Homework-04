@@ -107,4 +107,5 @@ public/
 .history
 
 # End of https://www.gitignore.io/api/node,visualstudiocode
-
+#Add an ignore for build files
+dist/

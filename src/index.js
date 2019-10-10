@@ -1,4 +1,5 @@
 import { AppDB } from "./db-init.js";
+import "./db-reader.js"
 import "./mystyle.css";
 
 //console.log("My Db is ", AppDB);

@@ -4,7 +4,7 @@ import { AppDB } from "./db-init.js";
 
 const showIndivualRecord = function(snapshot) {
   const expenseRecord = snapshot.val();
-  const table = document.getElementById('budgetTable');
+  const table = document.querySelector('#budgetTable tbody');
   const tableRow = document.createElement('tr');
 
   const tdAmount = document.createElement('td');

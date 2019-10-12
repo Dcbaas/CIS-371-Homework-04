@@ -1,19 +1,25 @@
 th,
 td {
-  font-family: 'Courier New', Courier, monospace;
+  font-family: "Courier New", Courier, monospace;
 }
 
-table, td, th {
+table,
+td,
+th {
   border: solid 2px black;
   border-collapse: collapse;
 }
 
-table tr:nth-child(odd) {
+table tbody tr:nth-child(odd) {
   background-color: #ff6f00;
 }
 
-table tr:nth-child(even) {
+table tbody tr:nth-child(even) {
   color: white;
   background-color: #c43e00;
-};
+}
 
+table thead tr {
+  color: white;
+  background-color: #c43e00;
+}

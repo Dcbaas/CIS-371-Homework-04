@@ -1,9 +1,9 @@
 import { AppDB } from "./db-init.js";
-
-// alert("Inside DB reader");
+import selectionHandler from "./db-remover.js";
 
 const showIndivualRecord = function(snapshot) {
   const expenseRecord = snapshot.val();
+
   const table = document.querySelector('#budgetTable tbody');
   const tableRow = document.createElement('tr');
 
@@ -15,19 +15,29 @@ const showIndivualRecord = function(snapshot) {
   tdDescription.appendChild(document.createTextNode(expenseRecord.description));
   tableRow.appendChild(tdDescription);
 
+  const tdCheckIt = document.createElement('td');
+  const checkIt = document.createElement('input');
+  checkIt.setAttribute('id', snapshot.key);
+  checkIt.setAttribute('type', 'checkbox');
+  checkIt.addEventListener('change', selectionHandler);
+  tdCheckIt.appendChild(checkIt);
+  tableRow.appendChild(tdCheckIt);
+
   table.appendChild(tableRow);
 };
 
 const showSummary = function(snapshot) {
   removeOldTotal();
-  
+
   const data = snapshot.val();
   const tableBody = document.querySelector('#budgetTable tbody');
   const totalRow = document.createElement('tr');
   totalRow.setAttribute('id', 'total');
 
   let total = 0;
+  // console.log(data);
   for(let key in data){
+    // console.log(data[key]);
     total += Number(data[key].amount);
   }
 
@@ -38,6 +48,9 @@ const showSummary = function(snapshot) {
   const tdDescription = document.createElement('td');
   tdDescription.appendChild(document.createTextNode('Total'));
   totalRow.appendChild(tdDescription);
+
+  const tdFiller = document.createElement('td');
+  totalRow.appendChild(tdFiller);
 
   tableBody.appendChild(totalRow);
 };

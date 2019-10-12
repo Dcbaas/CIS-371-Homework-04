@@ -19,6 +19,8 @@ const showIndivualRecord = function(snapshot) {
 };
 
 const showSummary = function(snapshot) {
+  removeOldTotal();
+  
   const data = snapshot.val();
   const tableBody = document.querySelector('#budgetTable tbody');
   const totalRow = document.createElement('tr');
@@ -39,6 +41,14 @@ const showSummary = function(snapshot) {
 
   tableBody.appendChild(totalRow);
 };
+
+const removeOldTotal = () => {
+  const totalRow = document.getElementById('total');
+  
+  if(totalRow !== null){
+    totalRow.parentNode.removeChild(totalRow);
+  }
+}
 
 // Attach two different listeners to the "budget" node
 // value listener and child_added listener

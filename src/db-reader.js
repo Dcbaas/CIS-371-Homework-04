@@ -20,12 +20,24 @@ const showIndivualRecord = function(snapshot) {
 
 const showSummary = function(snapshot) {
   const data = snapshot.val();
+  const tableBody = document.querySelector('#budgetTable tbody');
+  const totalRow = document.createElement('tr');
+  totalRow.setAttribute('id', 'total');
 
-  for (let key in data) {
-    const expenseItem = data[key];
-    console.log("Item is", expenseItem);
+  let total = 0;
+  for(let key in data){
+    total += Number(data[key].amount);
   }
-  
+
+  const tdAmount = document.createElement('td');
+  tdAmount.appendChild(document.createTextNode(total));
+  totalRow.appendChild(tdAmount);
+
+  const tdDescription = document.createElement('td');
+  tdDescription.appendChild(document.createTextNode('Total'));
+  totalRow.appendChild(tdDescription);
+
+  tableBody.appendChild(totalRow);
 };
 
 // Attach two different listeners to the "budget" node

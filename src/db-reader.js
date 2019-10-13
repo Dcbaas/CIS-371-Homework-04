@@ -74,15 +74,11 @@ const removeOldTotal = () => {
 
 const whichOneIsGone = function(snapshot) {
   const whichKey = snapshot.key;
-  // This would be the key of the deleted record in Firebase
-  // alert(whichKey + " is disappearing....");
   const keyId = ROW_PREFIX + whichKey;
   const victimRow = document.getElementById(keyId);
   victimRow.parentNode.removeChild(victimRow);
 };
 
-// Attach two different listeners to the "budget" node
-// value listener and child_added listener
 AppDB.ref("budget").on("value", showSummary);
 AppDB.ref("budget").on("child_added", showIndivualRecord);
 AppDB.ref("budget").on("child_removed", whichOneIsGone);

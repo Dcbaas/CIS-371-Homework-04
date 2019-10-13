@@ -12,14 +12,27 @@ const showIndivualRecord = function(snapshot) {
 
   tableRow.setAttribute('id', rowKey);
 
-  const tdAmount = document.createElement('td');
-  tdAmount.appendChild(document.createTextNode(expenseRecord.amount));
-  tableRow.appendChild(tdAmount);
+  // 1. DoP
+  const tdDate = document.createElement('td');
+  tdDate.appendChild(document.createTextNode(expenseRecord.date));
+  tableRow.appendChild(tdDate);
 
+  // 2. Description
   const tdDescription = document.createElement('td');
   tdDescription.appendChild(document.createTextNode(expenseRecord.description));
   tableRow.appendChild(tdDescription);
 
+  // 3. Catagory
+  const tdCatagory = document.createElement('td');
+  tdCatagory.appendChild(document.createTextNode(expenseRecord.catagory));
+  tableRow.appendChild(tdCatagory);
+
+  // 4. Amount
+  const tdAmount = document.createElement('td');
+  tdAmount.appendChild(document.createTextNode(expenseRecord.amount));
+  tableRow.appendChild(tdAmount);
+
+  // 5. Select
   const tdCheckIt = document.createElement('td');
   const checkIt = document.createElement('input');
   checkIt.setAttribute('id', snapshot.key);
@@ -40,22 +53,13 @@ const showSummary = function(snapshot) {
   totalRow.setAttribute('id', 'total');
 
   let total = 0;
-  // console.log(data);
   for(let key in data){
-    // console.log(data[key]);
     total += Number(data[key].amount);
   }
 
-  const tdAmount = document.createElement('td');
-  tdAmount.appendChild(document.createTextNode(total));
-  totalRow.appendChild(tdAmount);
-
-  const tdDescription = document.createElement('td');
-  tdDescription.appendChild(document.createTextNode('Total'));
-  totalRow.appendChild(tdDescription);
-
-  const tdFiller = document.createElement('td');
-  totalRow.appendChild(tdFiller);
+  const tdTotal = document.createElement('td');
+  tdTotal.appendChild(document.createTextNode(`Total: ${total.toFixed(2)}`));
+  totalRow.appendChild(tdTotal);
 
   tableBody.appendChild(totalRow);
 };
